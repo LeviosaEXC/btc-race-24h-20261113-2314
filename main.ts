@@ -76,8 +76,6 @@ function decide(state: BarsState, close: number): OrderInput[] {
     const trailHit = close < trailPeak * (1 - trailBps / 10000);
     const tpHit = openLeg === 'R' && (close / entryClose - 1) * 10000 >= REVERSAL_TP_BPS;
     if (trailHit || tpHit) {
-      openLeg = null;
-      trailPeak = 0;
       return [{ side: 'sell', symbol: SYMBOL, qty, max_slippage_bps: MAX_SLIPPAGE_BPS }];
     }
     return [];
